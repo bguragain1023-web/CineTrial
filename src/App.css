@@ -1,6 +1,7 @@
 /* Wrapper */
 .wrapper {
   background: rgba(1, 1, 49, 0.76);
+  min-height: 100vh;
 }
 
 /* Navbar */
@@ -38,7 +39,13 @@
 }
 .movie-detail {
   color: rgba(255, 255, 255, 0.5);
-  font-size: 15px;
+}
+
+.movie-detail span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
 }
 
 .desc {
@@ -50,4 +57,23 @@
   padding: 10px;
   color: white;
   border-radius: 10px;
+}
+
+/* dispaly components */
+
+.display-wrapper {
+  margin: 10px auto;
+  padding: 10px 10px;
+  background: #9693936c;
+}
+
+/* MovieCard */
+
+.card-edit {
+  width: 18rem;
+  height: auto;
+}
+.card-edit img {
+  height: 200px;
+  object-fit: cover;
 }
