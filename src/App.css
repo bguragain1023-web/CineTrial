@@ -1,3 +1,9 @@
+.fjalla-one-regular {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Wrapper */
 .wrapper {
   background: rgba(1, 1, 49, 0.76);
@@ -57,6 +63,11 @@
   padding: 10px;
   color: white;
   border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.btn-edit:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgb(24, 21, 21, 0.5);
 }
 
 /* dispaly components */
@@ -64,9 +75,16 @@
 .display-wrapper {
   margin: 10px auto;
   padding: 10px 10px;
-  background: #9693936c;
 }
 
+.moviecard-wrapper {
+  background: #9693936c;
+  padding: 20px;
+}
+.watchlist-wrapper {
+  background: #9693936c;
+  padding: 20px;
+}
 /* MovieCard */
 
 .card-edit {
@@ -76,4 +94,55 @@
 .card-edit img {
   height: 200px;
   object-fit: cover;
+}
+.cardbody-edit {
+  background: #0c0c0cde;
+  color: rgba(163, 161, 161, 0.904);
+}
+.moviecard-title {
+  font-style: italic;
+  color: rgba(226, 218, 218, 0.863);
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.year-rating span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.btn-h {
+  font-style: italic;
+  background: transparent;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-btn-r {
+  color: red;
+  border: 1px solid red;
+}
+
+.card-btn-g {
+  color: green;
+  border: 1px solid green;
+}
+.btn-h:hover {
+  transform: scale(1.1);
+}
+
+.light-text {
+  color: rgba(218, 210, 210, 0.959);
+  font-style: italic;
+}
+
+/* footer */
+.footer {
+  padding: 20px;
+  margin: auto;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.226);
 }

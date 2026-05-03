@@ -1,5 +1,6 @@
 import "./App.css";
 import { Display } from "./components/Display";
+import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 
@@ -11,13 +12,7 @@ function App() {
 
         <Hero />
         <Display />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <Footer />
       </div>
     </>
   );

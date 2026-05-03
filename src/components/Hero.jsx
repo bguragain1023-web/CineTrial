@@ -27,7 +27,7 @@ export const Hero = () => {
             <img src={mp} alt="" />
           </div>
           <div className="desc-box">
-            <div className="movie-title">Brazzy Man</div>
+            <div className="movie-title fjalla-one-regular">Brazzy Man</div>
             <div className="movie-detail d-flex gap-3 mt-1">
               <span>Action</span>
               <span>2021</span>
@@ -40,8 +40,13 @@ export const Hero = () => {
               tempora explicabo corporis officia?
             </div>
             <div className="watch-trailer mt-3 d-flex gap-3">
-              <button className="bg-danger btn-edit">watch Trailor</button>
-              <button className="bg-success btn-edit">Add to watchlist</button>
+              <button className="bg-danger btn-edit">
+                <i class="bi bi-play-circle-fill"></i> watch Trailor
+              </button>
+              <button className="bg-success btn-edit">
+                {" "}
+                <i class="bi bi-plus-lg"></i> Add to watchlist
+              </button>
             </div>
           </div>
         </div>
