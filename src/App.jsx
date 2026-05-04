@@ -4,16 +4,24 @@ import { Display } from "./components/Display";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
-import { fetchPopularMovie } from "./utils/axios";
+import { fetchGenre, fetchPopularMovie } from "./utils/axios";
 
 function App() {
-  const [heroMovie, setHeroMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [heroMovie, setHeroMovie] = useState(null);
+  const [genre, setGenre] = useState([]);
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
       const randomMovies = await fetchPopularMovie();
-      setHeroMovies(randomMovies.results);
-      console.log(randomMovies.results);
+
+      const genreList = await fetchGenre();
+      setMovies(randomMovies.results);
+      setGenre(genreList);
+
+      const random = Math.floor(Math.random() * randomMovies.results.length);
+
+      setHeroMovie(randomMovies.results[random]);
     };
     fetchRandomMovie();
   }, []);
@@ -23,7 +31,7 @@ function App() {
       <div className="wrapper ">
         <Navbar />
 
-        <Hero />
+        <Hero heroMovie={heroMovie} genres={genre} />
         <Display />
         <Footer />
       </div>

@@ -23,3 +23,7 @@ export const fetchSearchedMovie = async (searched) => {
   );
   return response.data;
 };
+export const fetchGenre = async () => {
+  const response = await axios.get(`${baseURL}/genre/movie/list`, options);
+  return response.data.genres;
+};

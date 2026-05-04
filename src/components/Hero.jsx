@@ -2,7 +2,25 @@ import React, { useEffect } from "react";
 import mp from "../assets/mp.jpg";
 import { fetchPopularMovie } from "../utils/axios";
 
-export const Hero = () => {
+export const Hero = ({ heroMovie, genres }) => {
+  if (!heroMovie) return null;
+
+  const {
+    id,
+    original_title,
+    title,
+    overview,
+    poster_path,
+    vote_average,
+    release_date,
+    genre_ids,
+  } = heroMovie;
+
+  const genreName = (id) => {
+    if (!genres || !Array.isArray(genres) || genres.length === 0) return "";
+    const genre = genres.find((g) => g.id === id);
+    return genre.name;
+  };
   return (
     <>
       <div className="hero container mt-2 pt-4 ">
@@ -26,21 +44,16 @@ export const Hero = () => {
 
         <div className="container  d-flex p-3 gap-4 border rounded-4  ">
           <div className="image-box">
-            <img src={mp} alt="" />
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
           </div>
           <div className="desc-box">
-            <div className="movie-title fjalla-one-regular">Brazzy Man</div>
+            <div className="movie-title fjalla-one-regular">{title}</div>
             <div className="movie-detail d-flex gap-3 mt-1">
-              <span>Action</span>
-              <span>2021</span>
-              <span>7.5</span>
+              <span>{genreName(genre_ids[0])}</span>
+              <span>{release_date.split("-")[0]}</span>
+              <span>{vote_average.toFixed(1)}</span>
             </div>
-            <div className="desc mt-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              minus repellendus quia earum cupiditate numquam impedit. Laborum,
-              unde aspernatur minima earum molestias nisi laboriosam sunt iure
-              tempora explicabo corporis officia?
-            </div>
+            <div className="desc mt-3">{overview}</div>
             <div className="watch-trailer mt-3 d-flex gap-3">
               <button className="bg-danger btn-edit">
                 <i className="bi bi-play-circle-fill"></i> watch Trailor
