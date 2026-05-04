@@ -14,11 +14,10 @@ export const Moviecard = () => {
           </div>
           <div className=" card-btns d-flex gap-3 mt-4">
             <button className="card-btn-r btn-h">
-              <i class="bi bi-play-fill"></i> Trailer
+              <i className="bi bi-play-fill"></i> Trailer
             </button>
             <button className="card-btn-g btn-h">
-              {" "}
-              <i class="bi bi-plus"></i>Watchlist
+              <i className="bi bi-plus"></i>Watchlist
             </button>
           </div>
         </div>

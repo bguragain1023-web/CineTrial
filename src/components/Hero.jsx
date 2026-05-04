@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import mp from "../assets/mp.jpg";
+import { fetchPopularMovie } from "../utils/axios";
+
 export const Hero = () => {
   return (
     <>
@@ -41,11 +43,11 @@ export const Hero = () => {
             </div>
             <div className="watch-trailer mt-3 d-flex gap-3">
               <button className="bg-danger btn-edit">
-                <i class="bi bi-play-circle-fill"></i> watch Trailor
+                <i className="bi bi-play-circle-fill"></i> watch Trailor
               </button>
               <button className="bg-success btn-edit">
                 {" "}
-                <i class="bi bi-plus-lg"></i> Add to watchlist
+                <i className="bi bi-plus-lg"></i> Add to watchlist
               </button>
             </div>
           </div>
