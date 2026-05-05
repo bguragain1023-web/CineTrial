@@ -1,7 +1,12 @@
 import React from "react";
 import mp from "../assets/mp.jpg";
 
-export const Moviecard = ({ movie }) => {
+export const Moviecard = ({
+  movie,
+  addToWatchList,
+  isWatchList,
+  removeFromWatchList,
+}) => {
   if (!movie) return null;
   const {
     id,
@@ -31,9 +36,22 @@ export const Moviecard = ({ movie }) => {
             <button className="card-btn-r btn-h">
               <i className="bi bi-play-fill"></i> Trailer
             </button>
-            <button className="card-btn-g btn-h">
-              <i className="bi bi-plus"></i>Watchlist
-            </button>
+
+            {isWatchList ? (
+              <button
+                className="card-btn-r btn-h"
+                onClick={() => removeFromWatchList(movie)}
+              >
+                <i className="bi bi-trash3-fill"></i> Remove
+              </button>
+            ) : (
+              <button
+                className="card-btn-g btn-h"
+                onClick={() => addToWatchList(movie)}
+              >
+                <i className="bi bi-plus"></i>Watchlist
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [heroMovie, setHeroMovie] = useState(null);
   const [genre, setGenre] = useState([]);
+  const [watchList, setWatchList] = useState([]);
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
@@ -25,6 +26,16 @@ function App() {
     };
     fetchRandomMovie();
   }, []);
+
+  const addToWatchList = (movie) => {
+    const exists = watchList.find((m) => m.id == movie.id);
+    if (exists) return;
+    setWatchList([...watchList, movie]);
+  };
+
+  const removeFromWatchList = (movie) => {
+    setWatchList(watchList.filter((m) => m.id !== movie.id));
+  };
   console.log(heroMovie);
   return (
     <>
@@ -35,8 +46,15 @@ function App() {
           heroMovie={heroMovie}
           genres={genre}
           setHeroMovie={setHeroMovie}
+          addToWatchList={addToWatchList}
         />
-        <Display movies={movies} genres={genre} />
+        <Display
+          movies={movies}
+          genres={genre}
+          watchList={watchList}
+          addToWatchList={addToWatchList}
+          removeFromWatchList={removeFromWatchList}
+        />
         <Footer />
       </div>
     </>

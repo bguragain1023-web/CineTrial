@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import mp from "../assets/mp.jpg";
 import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
 
-export const Hero = ({ heroMovie, genres, setHeroMovie }) => {
+export const Hero = ({ heroMovie, genres, setHeroMovie, addToWatchList }) => {
   if (!heroMovie) return null;
 
   const {
@@ -32,6 +32,7 @@ export const Hero = ({ heroMovie, genres, setHeroMovie }) => {
     const genre = genres.find((g) => g.id === id);
     return genre.name;
   };
+
   return (
     <>
       <div className="hero container mt-2 pt-4 ">
@@ -48,6 +49,7 @@ export const Hero = ({ heroMovie, genres, setHeroMovie }) => {
             <button
               className="input-group-text btn btn-danger"
               id="basic-addon2"
+              onClick={handleOnSearchMovie}
             >
               Search movie
             </button>
@@ -70,7 +72,10 @@ export const Hero = ({ heroMovie, genres, setHeroMovie }) => {
               <button className="bg-danger btn-edit">
                 <i className="bi bi-play-circle-fill"></i> watch Trailor
               </button>
-              <button className="bg-success btn-edit">
+              <button
+                className="bg-success btn-edit"
+                onClick={() => addToWatchList(heroMovie)}
+              >
                 {" "}
                 <i className="bi bi-plus-lg"></i> Add to watchlist
               </button>
