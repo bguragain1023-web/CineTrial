@@ -11,12 +11,18 @@ import {
   fetchTrailer,
   fetchTrendingMovies,
 } from "./utils/axios";
+import {
+  accessFromLocalSession,
+  storeInLocalSession,
+} from "./utils/localStorage";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [heroMovie, setHeroMovie] = useState(null);
   const [genre, setGenre] = useState([]);
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState(() => {
+    return accessFromLocalSession() || [];
+  });
   const [trailerKey, setTrailerKey] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
   const [trending, setTrending] = useState([]);
@@ -40,16 +46,20 @@ function App() {
   const addToWatchList = (movie) => {
     const exists = watchList.find((m) => m.id == movie.id);
     if (exists) return;
-    setWatchList([...watchList, movie]);
+    const updated = [...watchList, movie];
+    setWatchList(updated);
+    storeInLocalSession(updated);
   };
 
   const removeFromWatchList = (movie) => {
-    setWatchList(watchList.filter((m) => m.id !== movie.id));
+    const updated = watchList.filter((m) => m.id !== movie.id);
+    setWatchList(updated);
+    storeInLocalSession(updated);
   };
 
   const handleOnTrailer = async (movieID) => {
     const key = await fetchTrailer(movieID);
-    console.log(key);
+
     setTrailerKey(key);
     setShowTrailer(true);
   };
@@ -62,7 +72,13 @@ function App() {
   const handleOnFetchByGenre = async (genre_ids, tabName) => {
     const fetchResult = await fetchByGenre(genre_ids);
     setMovies(fetchResult.results);
-    setActiveTab("tabName");
+    setActiveTab(tabName);
+  };
+
+  const genreName = (id) => {
+    if (!genre || !Array.isArray(genre) || genre.length === 0) return "";
+    const found = genre.find((g) => g.id === id);
+    return found ? found.name : "";
   };
 
   return (
@@ -79,6 +95,7 @@ function App() {
           setHeroMovie={setHeroMovie}
           addToWatchList={addToWatchList}
           handleOnTrailer={handleOnTrailer}
+          genreName={genreName}
         />
         <Display
           movies={movies}
@@ -88,6 +105,7 @@ function App() {
           removeFromWatchList={removeFromWatchList}
           handleOnTrailer={handleOnTrailer}
           activeTab={activeTab}
+          genreName={genreName}
         />
 
         {showTrailer && trailerKey && (

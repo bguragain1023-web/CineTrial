@@ -8,6 +8,7 @@ export const Hero = ({
   setHeroMovie,
   addToWatchList,
   handleOnTrailer,
+  genreName,
 }) => {
   if (!heroMovie) return null;
 
@@ -27,7 +28,6 @@ export const Hero = ({
   const handleOnSearchMovie = async () => {
     const searchedMovieName = searchedMovie.current.value;
 
-    console.log(searchedMovieName);
     const searchedMovieData = await fetchSearchedMovie(searchedMovieName);
     if (searchedMovieData.results.length === 0) {
       setErrorMessage("Movie not found !! Try again");
@@ -35,18 +35,11 @@ export const Hero = ({
     }
     setErrorMessage("");
     setHeroMovie(searchedMovieData.results[0]);
-    console.log(searchedMovieData.result);
-  };
-
-  const genreName = (id) => {
-    if (!genres || !Array.isArray(genres) || genres.length === 0) return "";
-    const genre = genres.find((g) => g.id === id);
-    return genre ? genre.name : "";
   };
 
   return (
     <>
-      <div className="hero container mt-2 pt-4 ">
+      <div className="hero container mt-2 pt-4 pb-3 ">
         <div className="search-area d-flex justify-content-center align-items-center flex-column">
           <div className="input-group mb-3 ">
             <input

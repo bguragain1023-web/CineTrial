@@ -7,6 +7,7 @@ export const Moviecard = ({
   isWatchList,
   removeFromWatchList,
   handleOnTrailer,
+  genreName,
 }) => {
   if (!movie) return null;
   const {
@@ -30,6 +31,7 @@ export const Moviecard = ({
           <div className="moviecard-title fjalla-one-regular">{title}</div>
           <div className="year-rating d-flex justify-content-between">
             <span>{release_date.split("-")[0]}</span>
+            <span>{genreName(genre_ids[0])}</span>
 
             <span>IMDB : {vote_average.toFixed(1)}</span>
           </div>

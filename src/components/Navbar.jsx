@@ -11,7 +11,7 @@ export const Navbar = ({ handleOnFetchByGenre, handleOnTrending }) => {
           </div>
           <div className="right d-flex gap-4">
             <a
-              href=""
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 handleOnTrending();
@@ -20,7 +20,7 @@ export const Navbar = ({ handleOnFetchByGenre, handleOnTrending }) => {
               Trending
             </a>
             <a
-              href=""
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 handleOnFetchByGenre(28, "Action Movies");
@@ -29,13 +29,13 @@ export const Navbar = ({ handleOnFetchByGenre, handleOnTrending }) => {
               Action
             </a>
             <a
-              href=""
-              onClick={() => {
+              href="#"
+              onClick={(e) => {
                 e.preventDefault();
-                handleOnFetchByGenre(18, "Drama movies");
+                handleOnFetchByGenre(35, "Comedy movies");
               }}
             >
-              Drama
+              Comedy
             </a>
           </div>
         </div>

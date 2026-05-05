@@ -8,6 +8,7 @@ export const Display = ({
   removeFromWatchList,
   handleOnTrailer,
   activeTab,
+  genreName,
 }) => {
   return (
     <>
@@ -16,11 +17,12 @@ export const Display = ({
           <span className="light-text ">{activeTab}</span>
           <div className="row mt-3 gy-3">
             {movies.slice(0, 6).map((movie) => (
-              <div className="col-md-4" key={movie.id}>
+              <div className="col-md-6 col-lg-4" key={movie.id}>
                 <Moviecard
                   movie={movie}
                   addToWatchList={addToWatchList}
                   handleOnTrailer={handleOnTrailer}
+                  genreName={genreName}
                 />
               </div>
             ))}
@@ -32,12 +34,13 @@ export const Display = ({
             <span className="light-text ">Watchlist</span>
             <div className="row mt-3 gy-3">
               {watchList.map((movie) => (
-                <div className="col-md-4" key={movie.id}>
+                <div className="col-md-6 col-lg-4" key={movie.id}>
                   <Moviecard
                     movie={movie}
                     isWatchList={true}
                     removeFromWatchList={removeFromWatchList}
                     handleOnTrailer={handleOnTrailer}
+                    genreName={genreName}
                   />
                 </div>
               ))}

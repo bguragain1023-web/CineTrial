@@ -26,11 +26,11 @@ export const fetchSearchedMovie = async (searched) => {
 
 export const fetchTrailer = async (id) => {
   const response = await axios.get(`${baseURL}/movie/${id}/videos`, options);
-  console.log("All videos:", response.data.results);
+
   const trailer = response.data.results.find(
     (video) => video.site == "YouTube" && video.type == "Trailer",
   );
-  console.log("Matched trailer:", trailer);
+
   return trailer?.key;
 };
 
@@ -48,7 +48,6 @@ export const fetchByGenre = async (genreId) => {
     `${baseURL}/discover/movie?with_genres=${genreId}`,
     options,
   );
-  console.log(response.data);
 
   return response.data;
 };
