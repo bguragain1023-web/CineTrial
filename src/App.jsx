@@ -25,14 +25,18 @@ function App() {
     };
     fetchRandomMovie();
   }, []);
-
+  console.log(heroMovie);
   return (
     <>
       <div className="wrapper ">
         <Navbar />
 
-        <Hero heroMovie={heroMovie} genres={genre} />
-        <Display />
+        <Hero
+          heroMovie={heroMovie}
+          genres={genre}
+          setHeroMovie={setHeroMovie}
+        />
+        <Display movies={movies} genres={genre} />
         <Footer />
       </div>
     </>

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import mp from "../assets/mp.jpg";
-import { fetchPopularMovie } from "../utils/axios";
+import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
 
-export const Hero = ({ heroMovie, genres }) => {
+export const Hero = ({ heroMovie, genres, setHeroMovie }) => {
   if (!heroMovie) return null;
 
   const {
@@ -15,6 +15,17 @@ export const Hero = ({ heroMovie, genres }) => {
     release_date,
     genre_ids,
   } = heroMovie;
+  const searchedMovie = useRef("");
+
+  const handleOnSearchMovie = async () => {
+    const searchedMovieName = searchedMovie.current.value;
+    console.log(searchedMovieName);
+    const searchedMovieData = await fetchSearchedMovie(searchedMovieName);
+    if (searchedMovieData.results.length > 0) {
+      setHeroMovie(searchedMovieData.results[0]);
+    }
+    console.log(searchedMovieData);
+  };
 
   const genreName = (id) => {
     if (!genres || !Array.isArray(genres) || genres.length === 0) return "";
@@ -27,6 +38,7 @@ export const Hero = ({ heroMovie, genres }) => {
         <div className="search-area d-flex justify-content-center align-items-center ">
           <div className="input-group mb-3 ">
             <input
+              ref={searchedMovie}
               type="text"
               className="form-control"
               placeholder=" Search Moive By Title"

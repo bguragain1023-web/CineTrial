@@ -94,11 +94,13 @@
 /* MovieCard */
 
 .card-edit {
-  width: 18rem;
-  height: auto;
+  width: 21rem;
+  height: 100%;
 }
-.card-edit img {
-  height: 200px;
+
+.card-img-top {
+  width: 100%;
+  height: 300px;
   object-fit: cover;
 }
 .cardbody-edit {
@@ -126,6 +128,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  margin-top: auto;
 }
 
 .card-btn-r {
