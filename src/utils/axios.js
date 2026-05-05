@@ -42,3 +42,13 @@ export const fetchTrendingMovies = async () => {
   const response = await axios.get(`${baseURL}/trending/movie/day`, options);
   return response.data;
 };
+
+export const fetchByGenre = async (genreId) => {
+  const response = await axios.get(
+    `${baseURL}/discover/movie?with_genres=${genreId}`,
+    options,
+  );
+  console.log(response.data);
+
+  return response.data;
+};

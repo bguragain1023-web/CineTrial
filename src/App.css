@@ -31,7 +31,7 @@
 /* Hero */
 .hero {
   background: #1f0c7483;
-  min-height: 60vh;
+  min-height: 70vh;
 }
 .search-area {
   width: 60%;
@@ -182,4 +182,17 @@
   color: red;
   font-size: 24px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .search-area {
+    width: 80%;
+  }
+
+  .heromovie-wrapper {
+    flex-direction: column;
+  }
+  .image-box img {
+    width: 100%;
+  }
 }

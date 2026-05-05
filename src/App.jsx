@@ -4,7 +4,13 @@ import { Display } from "./components/Display";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
-import { fetchGenre, fetchPopularMovie, fetchTrailer } from "./utils/axios";
+import {
+  fetchByGenre,
+  fetchGenre,
+  fetchPopularMovie,
+  fetchTrailer,
+  fetchTrendingMovies,
+} from "./utils/axios";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -13,6 +19,8 @@ function App() {
   const [watchList, setWatchList] = useState([]);
   const [trailerKey, setTrailerKey] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [trending, setTrending] = useState([]);
+  const [activeTab, setActiveTab] = useState("Popular");
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
@@ -45,12 +53,25 @@ function App() {
     setTrailerKey(key);
     setShowTrailer(true);
   };
-  console.log(heroMovie);
+
+  const handleOnTrending = async () => {
+    const trendingMovies = await fetchTrendingMovies();
+    setMovies(trendingMovies.results);
+    setActiveTab("Trending now");
+  };
+  const handleOnFetchByGenre = async (genre_ids, tabName) => {
+    const fetchResult = await fetchByGenre(genre_ids);
+    setMovies(fetchResult.results);
+    setActiveTab("tabName");
+  };
 
   return (
     <>
       <div className="wrapper ">
-        <Navbar />
+        <Navbar
+          handleOnTrending={handleOnTrending}
+          handleOnFetchByGenre={handleOnFetchByGenre}
+        />
 
         <Hero
           heroMovie={heroMovie}
@@ -66,6 +87,7 @@ function App() {
           addToWatchList={addToWatchList}
           removeFromWatchList={removeFromWatchList}
           handleOnTrailer={handleOnTrailer}
+          activeTab={activeTab}
         />
 
         {showTrailer && trailerKey && (
@@ -75,7 +97,7 @@ function App() {
           >
             <div
               className="trailer-container"
-              onClick={(e) => stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="close-btn"

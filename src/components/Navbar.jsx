@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Navbar = () => {
+export const Navbar = ({ handleOnFetchByGenre, handleOnTrending }) => {
   return (
     <>
       <div className="nav  ">
@@ -10,9 +10,33 @@ export const Navbar = () => {
             Movie world
           </div>
           <div className="right d-flex gap-4">
-            <a href="">Trending</a>
-            <a href="">Action</a>
-            <a href="">Drama</a>
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                handleOnTrending();
+              }}
+            >
+              Trending
+            </a>
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                handleOnFetchByGenre(28, "Action Movies");
+              }}
+            >
+              Action
+            </a>
+            <a
+              href=""
+              onClick={() => {
+                e.preventDefault();
+                handleOnFetchByGenre(18, "Drama movies");
+              }}
+            >
+              Drama
+            </a>
           </div>
         </div>
       </div>

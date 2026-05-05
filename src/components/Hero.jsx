@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mp from "../assets/mp.jpg";
 import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
 
@@ -22,15 +22,20 @@ export const Hero = ({
     genre_ids,
   } = heroMovie;
   const searchedMovie = useRef("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleOnSearchMovie = async () => {
     const searchedMovieName = searchedMovie.current.value;
+
     console.log(searchedMovieName);
     const searchedMovieData = await fetchSearchedMovie(searchedMovieName);
-    if (searchedMovieData.results.length > 0) {
-      setHeroMovie(searchedMovieData.results[0]);
+    if (searchedMovieData.results.length === 0) {
+      setErrorMessage("Movie not found !! Try again");
+      return;
     }
-    console.log(searchedMovieData);
+    setErrorMessage("");
+    setHeroMovie(searchedMovieData.results[0]);
+    console.log(searchedMovieData.result);
   };
 
   const genreName = (id) => {
@@ -42,7 +47,7 @@ export const Hero = ({
   return (
     <>
       <div className="hero container mt-2 pt-4 ">
-        <div className="search-area d-flex justify-content-center align-items-center ">
+        <div className="search-area d-flex justify-content-center align-items-center flex-column">
           <div className="input-group mb-3 ">
             <input
               ref={searchedMovie}
@@ -60,9 +65,14 @@ export const Hero = ({
               Search movie
             </button>
           </div>
+          <div className="errormsg">
+            {errorMessage && (
+              <p className="text-danger text-center">{errorMessage}</p>
+            )}
+          </div>
         </div>
 
-        <div className="container  d-flex p-3 gap-4 border rounded-4  ">
+        <div className="container heromovie-wrapper d-flex p-3 gap-4 border rounded-4  ">
           <div className="image-box">
             <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
           </div>
