@@ -2,7 +2,13 @@ import React, { useEffect, useRef } from "react";
 import mp from "../assets/mp.jpg";
 import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
 
-export const Hero = ({ heroMovie, genres, setHeroMovie, addToWatchList }) => {
+export const Hero = ({
+  heroMovie,
+  genres,
+  setHeroMovie,
+  addToWatchList,
+  handleOnTrailer,
+}) => {
   if (!heroMovie) return null;
 
   const {
@@ -30,7 +36,7 @@ export const Hero = ({ heroMovie, genres, setHeroMovie, addToWatchList }) => {
   const genreName = (id) => {
     if (!genres || !Array.isArray(genres) || genres.length === 0) return "";
     const genre = genres.find((g) => g.id === id);
-    return genre.name;
+    return genre ? genre.name : "";
   };
 
   return (
@@ -69,7 +75,10 @@ export const Hero = ({ heroMovie, genres, setHeroMovie, addToWatchList }) => {
             </div>
             <div className="desc mt-3">{overview}</div>
             <div className="watch-trailer mt-3 d-flex gap-3">
-              <button className="bg-danger btn-edit">
+              <button
+                className="bg-danger btn-edit"
+                onClick={() => handleOnTrailer(id)}
+              >
                 <i className="bi bi-play-circle-fill"></i> watch Trailor
               </button>
               <button

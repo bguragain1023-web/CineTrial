@@ -6,6 +6,7 @@ export const Display = ({
   watchList,
   addToWatchList,
   removeFromWatchList,
+  handleOnTrailer,
 }) => {
   return (
     <>
@@ -15,7 +16,11 @@ export const Display = ({
           <div className="row mt-3 gy-3">
             {movies.slice(0, 6).map((movie) => (
               <div className="col-md-4" key={movie.id}>
-                <Moviecard movie={movie} addToWatchList={addToWatchList} />
+                <Moviecard
+                  movie={movie}
+                  addToWatchList={addToWatchList}
+                  handleOnTrailer={handleOnTrailer}
+                />
               </div>
             ))}
           </div>
@@ -31,6 +36,7 @@ export const Display = ({
                     movie={movie}
                     isWatchList={true}
                     removeFromWatchList={removeFromWatchList}
+                    handleOnTrailer={handleOnTrailer}
                   />
                 </div>
               ))}

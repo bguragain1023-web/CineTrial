@@ -155,3 +155,31 @@
   margin: auto;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.226);
 }
+
+/*trailer */
+.trailer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.849);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.trailer-container {
+  position: relative;
+  width: 80%;
+  aspect-ratio: 16/9;
+}
+
+.close-btn {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: none;
+  border: none;
+  color: red;
+  font-size: 24px;
+  cursor: pointer;
+}

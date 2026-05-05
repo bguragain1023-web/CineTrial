@@ -4,13 +4,15 @@ import { Display } from "./components/Display";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
-import { fetchGenre, fetchPopularMovie } from "./utils/axios";
+import { fetchGenre, fetchPopularMovie, fetchTrailer } from "./utils/axios";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [heroMovie, setHeroMovie] = useState(null);
   const [genre, setGenre] = useState([]);
   const [watchList, setWatchList] = useState([]);
+  const [trailerKey, setTrailerKey] = useState(null);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
@@ -36,7 +38,15 @@ function App() {
   const removeFromWatchList = (movie) => {
     setWatchList(watchList.filter((m) => m.id !== movie.id));
   };
+
+  const handleOnTrailer = async (movieID) => {
+    const key = await fetchTrailer(movieID);
+    console.log(key);
+    setTrailerKey(key);
+    setShowTrailer(true);
+  };
   console.log(heroMovie);
+
   return (
     <>
       <div className="wrapper ">
@@ -47,6 +57,7 @@ function App() {
           genres={genre}
           setHeroMovie={setHeroMovie}
           addToWatchList={addToWatchList}
+          handleOnTrailer={handleOnTrailer}
         />
         <Display
           movies={movies}
@@ -54,7 +65,35 @@ function App() {
           watchList={watchList}
           addToWatchList={addToWatchList}
           removeFromWatchList={removeFromWatchList}
+          handleOnTrailer={handleOnTrailer}
         />
+
+        {showTrailer && trailerKey && (
+          <div
+            className="trailer-overlay"
+            onClick={() => setShowTrailer(false)}
+          >
+            <div
+              className="trailer-container"
+              onClick={(e) => stopPropagation()}
+            >
+              <button
+                className="close-btn"
+                onClick={() => setShowTrailer(false)}
+              >
+                X
+              </button>
+              <iframe
+                src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+                width="100%"
+                height="100%"
+                allow="autoplay"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
+
         <Footer />
       </div>
     </>

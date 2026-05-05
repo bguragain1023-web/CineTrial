@@ -23,7 +23,22 @@ export const fetchSearchedMovie = async (searched) => {
   );
   return response.data;
 };
+
+export const fetchTrailer = async (id) => {
+  const response = await axios.get(`${baseURL}/movie/${id}/videos`, options);
+  console.log("All videos:", response.data.results);
+  const trailer = response.data.results.find(
+    (video) => video.site == "YouTube" && video.type == "Trailer",
+  );
+  console.log("Matched trailer:", trailer);
+  return trailer?.key;
+};
+
 export const fetchGenre = async () => {
   const response = await axios.get(`${baseURL}/genre/movie/list`, options);
   return response.data.genres;
+};
+export const fetchTrendingMovies = async () => {
+  const response = await axios.get(`${baseURL}/trending/movie/day`, options);
+  return response.data;
 };

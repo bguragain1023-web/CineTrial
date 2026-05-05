@@ -6,6 +6,7 @@ export const Moviecard = ({
   addToWatchList,
   isWatchList,
   removeFromWatchList,
+  handleOnTrailer,
 }) => {
   if (!movie) return null;
   const {
@@ -33,7 +34,10 @@ export const Moviecard = ({
             <span>IMDB : {vote_average.toFixed(1)}</span>
           </div>
           <div className=" card-btns d-flex gap-3 mt-4">
-            <button className="card-btn-r btn-h">
+            <button
+              className="card-btn-r btn-h"
+              onClick={() => handleOnTrailer(id)}
+            >
               <i className="bi bi-play-fill"></i> Trailer
             </button>
 
