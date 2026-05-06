@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import mp from "../assets/mp.jpg";
+
 import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
 
 export const Hero = ({

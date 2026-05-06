@@ -1,5 +1,4 @@
 import React from "react";
-import mp from "../assets/mp.jpg";
 
 export const Moviecard = ({
   movie,
