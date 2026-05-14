@@ -1,4 +1,4 @@
-import React from "react";
+
 
 export const Moviecard = ({
   movie,
@@ -12,7 +12,6 @@ export const Moviecard = ({
   const {
     id,
     title,
-    overview,
     poster_path,
     vote_average,
     release_date,

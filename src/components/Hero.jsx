@@ -1,20 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
+import  {  useRef, useState } from "react";
 
-import { fetchPopularMovie, fetchSearchedMovie } from "../utils/axios";
+import { fetchSearchedMovie } from "../utils/axios";
 
 export const Hero = ({
   heroMovie,
-  genres,
   setHeroMovie,
   addToWatchList,
   handleOnTrailer,
   genreName,
+  loading,
 }) => {
+    const searchedMovie = useRef("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+
+
+  if (loading ) return (
+ 
+<div className="d-flex justify-content-center align-items-center mt-5 text-white">
+  <button class="btn loading-btn" type="button" disabled>
+  <span class="spinner-border spinner-border-lg" aria-hidden="true"></span>
+  <span role="status"> Fetching Movies from TMDB ...</span>
+</button>
+</div>
+
+  ) 
   if (!heroMovie) return null;
 
   const {
     id,
-    original_title,
+
     title,
     overview,
     poster_path,
@@ -22,8 +37,7 @@ export const Hero = ({
     release_date,
     genre_ids,
   } = heroMovie;
-  const searchedMovie = useRef("");
-  const [errorMessage, setErrorMessage] = useState("");
+
 
   const handleOnSearchMovie = async () => {
     const searchedMovieName = searchedMovie.current.value;
@@ -39,8 +53,10 @@ export const Hero = ({
 
   return (
     <>
+
       <div className="hero container mt-2 pt-4 pb-3 ">
-        <div className="search-area d-flex justify-content-center align-items-center flex-column">
+
+    <div className="search-area d-flex justify-content-center align-items-center flex-column">
           <div className="input-group mb-3 ">
             <input
               ref={searchedMovie}
@@ -94,6 +110,10 @@ export const Hero = ({
             </div>
           </div>
         </div>
+
+        
+
+
       </div>
     </>
   );

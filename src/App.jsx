@@ -25,21 +25,28 @@ function App() {
   });
   const [trailerKey, setTrailerKey] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
-  const [trending, setTrending] = useState([]);
+
   const [activeTab, setActiveTab] = useState("Popular");
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchRandomMovie = async () => {
       const randomMovies = await fetchPopularMovie();
+  
+
 
       const genreList = await fetchGenre();
       setMovies(randomMovies.results);
       setGenre(genreList);
 
       const random = Math.floor(Math.random() * randomMovies.results.length);
+setHeroMovie(randomMovies.results[random]);
+       setLoading(false);
 
-      setHeroMovie(randomMovies.results[random]);
+
+      
     };
+   
     fetchRandomMovie();
   }, []);
 
@@ -84,18 +91,19 @@ function App() {
   return (
     <>
       <div className="wrapper ">
-        <Navbar
+        <Navbar  
           handleOnTrending={handleOnTrending}
           handleOnFetchByGenre={handleOnFetchByGenre}
         />
 
-        <Hero
+<Hero
           heroMovie={heroMovie}
           genres={genre}
           setHeroMovie={setHeroMovie}
           addToWatchList={addToWatchList}
           handleOnTrailer={handleOnTrailer}
           genreName={genreName}
+          loading ={loading}
         />
         <Display
           movies={movies}
@@ -107,6 +115,9 @@ function App() {
           activeTab={activeTab}
           genreName={genreName}
         />
+
+
+       
 
         {showTrailer && trailerKey && (
           <div

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Moviecard } from "./Moviecard";
 
 export const Display = ({
@@ -13,7 +13,7 @@ export const Display = ({
   return (
     <>
       <div className="display-wrapper mt-3 ">
-        <div className="container moviecard-wrapper border">
+        <div className="container moviecard-wrapper rounded-3">
           <span className="light-text ">{activeTab}</span>
           <div className="row mt-3 gy-3">
             {movies.slice(0, 6).map((movie) => (
@@ -30,7 +30,7 @@ export const Display = ({
         </div>
 
         {watchList && watchList.length > 0 && (
-          <div className="container moviecard-wrapper mt-3 border">
+          <div className="container moviecard-wrapper mt-3 rounded-3">
             <span className="light-text ">Watchlist</span>
             <div className="row mt-3 gy-3">
               {watchList.map((movie) => (

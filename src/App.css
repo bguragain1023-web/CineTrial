@@ -1,3 +1,11 @@
+:root{
+--bg : #0d0f1a;
+--compbg:#0d0f1a82;
+--cardbg:
+
+}
+
+
 .fjalla-one-regular {
   font-family: "Fjalla One", sans-serif;
   font-weight: 400;
@@ -6,7 +14,7 @@
 
 /* Wrapper */
 .wrapper {
-  background: rgba(1, 1, 49, 0.76);
+  background: #141414;
   min-height: 100vh;
 }
 
@@ -16,6 +24,7 @@
   color: white;
   padding: 20px;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.226);
+ 
 }
 .right > a {
   text-decoration: none;
@@ -30,8 +39,10 @@
 
 /* Hero */
 .hero {
-  background: #1f0c7483;
+  background:#0d0f1a82;
   min-height: 40vh;
+   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.226);
+   border-radius: 20px;;
 }
 .search-area {
   width: 60%;
@@ -79,16 +90,17 @@
 /* dispaly components */
 
 .display-wrapper {
+ 
   margin: 10px auto;
   padding: 10px 10px;
 }
 
 .moviecard-wrapper {
-  background: #9693936c;
+  background:#0d0f1a82;
   padding: 20px;
 }
 .watchlist-wrapper {
-  background: #9693936c;
+  background:#0d0f1a82;
   padding: 20px;
 }
 /* MovieCard */
@@ -104,7 +116,7 @@
   object-fit: cover;
 }
 .cardbody-edit {
-  background: #0c0c0cde;
+  background: #161b22;
   color: rgba(163, 161, 161, 0.904);
 }
 .moviecard-title {
@@ -195,4 +207,10 @@
   .image-box img {
     width: 100%;
   }
+}
+
+.loading-btn{
+  font-size:2rem;
+  font-weight:bolder;
+  border:none;
 }
